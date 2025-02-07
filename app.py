@@ -22,59 +22,59 @@ if 'discord_bot' not in st.session_state:
 
 # Page configuration
 st.set_page_config(
-    page_title="Hackathon Mood Map",
+    page_title="Mood Map",
     page_icon="🎯",
     layout="wide"
 )
 
 # Sidebar configuration
-st.sidebar.title("Configuration")
+# st.sidebar.title("Configuration")
 
-# Discord configuration
-with st.sidebar.expander("Discord Settings", expanded=True):
-    st.markdown("""
-    ### Setup Instructions
-    1. Create a Discord bot in the [Developer Portal](https://discord.com/developers/applications)
-    2. Enable Message Content Intent in Bot settings
-    3. Invite bot to your server
-    4. Right-click channel & copy Channel ID (Need Developer Mode)
-
-    [View Full Setup Guide](https://github.com/your-repo/README.md)
-    """)
-
-    discord_token = st.text_input("Discord Bot Token", type="password")
-    channel_id = st.text_input("Channel ID")
-
-    if st.button("Connect Discord"):
-        if discord_token:
-            try:
-                st.session_state.discord_bot = create_discord_bot(discord_token)
-                st.success("Discord bot configured! Start fetching messages to see the data.")
-            except Exception as e:
-                st.error(f"Error connecting to Discord: {str(e)}")
-
-    if st.session_state.discord_bot and channel_id:
-        if st.button("Fetch Discord Messages"):
-            try:
-                with st.spinner('Fetching messages from Discord...'):
-                    messages = asyncio.run(st.session_state.discord_bot.get_recent_messages(channel_id))
-                    if not messages.empty:
-                        analyzed_messages = st.session_state.sentiment_analyzer.analyze_messages(messages)
-                        st.session_state.data_processor.update_data(analyzed_messages)
-                        st.success(f"Fetched {len(messages)} messages from Discord!")
-                    else:
-                        st.info("No messages found in the specified channel. Make sure the bot has access to this channel.")
-            except Exception as e:
-                st.error(f"Error fetching Discord messages: {str(e)}\nMake sure the Channel ID is correct and the bot has access to the channel.")
-
-    if st.session_state.discord_bot:
-        st.success("✅ Bot is connected")
-        if channel_id:
-            st.info("💬 Channel ID is set")
-
+# # Discord configuration
+# with st.sidebar.expander("Discord Settings", expanded=True):
+#     st.markdown("""
+#     ### Setup Instructions
+#     1. Create a Discord bot in the [Developer Portal](https://discord.com/developers/applications)
+#     2. Enable Message Content Intent in Bot settings
+#     3. Invite bot to your server
+#     4. Right-click channel & copy Channel ID (Need Developer Mode)
+#
+#     [View Full Setup Guide](https://github.com/your-repo/README.md)
+#     """)
+#
+#     discord_token = st.text_input("Discord Bot Token", type="password")
+#     channel_id = st.text_input("Channel ID")
+#
+#     if st.button("Connect Discord"):
+#         if discord_token:
+#             try:
+#                 st.session_state.discord_bot = create_discord_bot(discord_token)
+#                 st.success("Discord bot configured! Start fetching messages to see the data.")
+#             except Exception as e:
+#                 st.error(f"Error connecting to Discord: {str(e)}")
+#
+#     if st.session_state.discord_bot and channel_id:
+#         if st.button("Fetch Discord Messages"):
+#             try:
+#                 with st.spinner('Fetching messages from Discord...'):
+#                     messages = asyncio.run(st.session_state.discord_bot.get_recent_messages(channel_id))
+#                     if not messages.empty:
+#                         analyzed_messages = st.session_state.sentiment_analyzer.analyze_messages(messages)
+#                         st.session_state.data_processor.update_data(analyzed_messages)
+#                         st.success(f"Fetched {len(messages)} messages from Discord!")
+#                     else:
+#                         st.info("No messages found in the specified channel. Make sure the bot has access to this channel.")
+#             except Exception as e:
+#                 st.error(f"Error fetching Discord messages: {str(e)}\nMake sure the Channel ID is correct and the bot has access to the channel.")
+#
+#     if st.session_state.discord_bot:
+#         st.success("✅ Bot is connected")
+#         if channel_id:
+#             st.info("💬 Channel ID is set")
+#
 
 # Title and description
-st.title("🎯 Hackathon Mood Map")
+st.title("🎯Mood Map")
 st.markdown("""
 Monitor the emotional pulse of your hackathon in real-time! This dashboard analyzes
 participant messages to track the overall mood and sentiment trends throughout the event.
@@ -142,10 +142,10 @@ else:
 if 'auto_refresh' not in st.session_state:
     st.session_state.auto_refresh = True
 
-# Auto-refresh toggle
-auto_refresh = st.sidebar.checkbox('Enable Auto-refresh', value=st.session_state.auto_refresh)
-st.session_state.auto_refresh = auto_refresh
-
-if st.session_state.auto_refresh:
-    time.sleep(30)
-    st.rerun()
+# # Auto-refresh toggle
+# auto_refresh = st.sidebar.checkbox('Enable Auto-refresh', value=st.session_state.auto_refresh)
+# st.session_state.auto_refresh = auto_refresh
+#
+# if st.session_state.auto_refresh:
+#     time.sleep(30)
+#     st.rerun()
