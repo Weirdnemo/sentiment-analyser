@@ -149,3 +149,4 @@ if 'auto_refresh' not in st.session_state:
 # if st.session_state.auto_refresh:
 #     time.sleep(30)
 #     st.rerun()
+# we can add discord bot into this analyzer as well.
