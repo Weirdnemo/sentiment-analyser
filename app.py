@@ -76,8 +76,8 @@ st.set_page_config(
 # Title and description
 st.title("🎯Mood Map")
 st.markdown("""
-Monitor the emotional pulse of your hackathon in real-time! This dashboard analyzes
-participant messages to track the overall mood and sentiment trends throughout the event.
+Monitor the emotional pulse of your texts in real-time! This dashboard analyzes
+messages to track the overall mood and sentiment trends throughout the text.
 """)
 
 # Create two columns for the layout
