@@ -1,4 +1,4 @@
-# Hackathon Mood Map - Discord Integration Guide
+# Mood Map - Discord Integration Guide (Optional)
 
 ## Setting up the Discord Bot
 
